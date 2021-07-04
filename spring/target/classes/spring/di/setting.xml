@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+	<!-- Exam exam = new NewlecExam();작성 지시문 -->
+	<bean id = "exam" class="spring.di.entity.NewlecExam">
+		<property name="kor" >
+			<value>10</value>
+		</property>
+		<property name="eng" value="15"/>
+		<property name="math" value="20"/>
+		<property name="com" value="40"/>
+	</bean>
+	<!-- ExamConsole console = new GridExamConsole(); 작성 지시문  -->
+	<bean id = "console" class="spring.di.ui.InlineExamConsole" >
+		<!-- console.setExam(exam); 작성 -->		
+		<property name="exam" ref ="exam" />
+	</bean>
+</beans>

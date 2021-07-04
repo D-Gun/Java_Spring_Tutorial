@@ -5,9 +5,15 @@ import spring.di.entity.Exam;
 public class InlineExamConsole implements ExamConsole {
 	
 	private Exam exam;
-	
+	public InlineExamConsole() {
+		// TODO Auto-generated constructor stub
+	}
 	public InlineExamConsole(Exam exam) {
 		
+		this.exam = exam;
+	}
+	@Override //setter
+	public void setExam(Exam exam) {
 		this.exam = exam;
 	}
 
