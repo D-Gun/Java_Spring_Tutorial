@@ -59,4 +59,10 @@ public class NewlecExam implements Exam { //Exam interface¸¦ implements
 	public float avg() {
 		return total()/4.0f;
 	}
+
+	@Override
+	public String toString() {
+		return "NewlecExam [kor=" + kor + ", eng=" + eng + ", math=" + math + ", com=" + com + "]";
+	}
+	
 }

@@ -1,19 +1,51 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+	xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:util="http://www.springframework.org/schema/util"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-4.3.xsd">
 	<!-- Exam exam = new NewlecExam();작성 지시문 -->
-	<bean id = "exam" class="spring.di.entity.NewlecExam">
+	<!-- namespace p를 사용하여 값 부여 -->
+	<bean id = "exam" class="spring.di.entity.NewlecExam" p:kor="10" p:eng="30" p:math="20" p:com="50" />
+		
+		<!-- setter을 이용한 값 설정 -->
+		<!-- index로 값 지정 시 <property index="0" value = 15/> 로 쓸수 있다. -->
+		<!-- 
 		<property name="kor" >
 			<value>10</value>
 		</property>
 		<property name="eng" value="15"/>
 		<property name="math" value="20"/>
-		<property name="com" value="40"/>
-	</bean>
+		<property name="com" value="40"/> -->
+		
+		
+		<!-- 생성자로 값 부여하는 방법 -->
+		<!-- index=0:kor, 1:eng 2:math 3:com , property처럼 name을 사용할 수도 있다.-->
+		<!--
+		<constructor-arg  index = "0" value ="10" />
+		<constructor-arg  index = "3" value ="30" />
+		<constructor-arg  index = "1" value ="20" />
+		<constructor-arg  index = "2" value ="40" /> -->
+		
+	
 	<!-- ExamConsole console = new GridExamConsole(); 작성 지시문  -->
 	<bean id = "console" class="spring.di.ui.InlineExamConsole" >
 		<!-- console.setExam(exam); 작성 -->		
 		<property name="exam" ref ="exam" />
 	</bean>
+	
+<!-- 	<bean id = "exams" class="java.util.ArrayList" >
+		<constructor-arg>
+			<list>
+				<bean class="spring.di.entity.NewlecExam" p:kor="1" p:eng="1" />
+				<ref bean="exam"/>
+			</list>
+		</constructor-arg>
+	</bean> -->
+	<!-- util namespace 사용해서 위와 똑같이 만들기, 아래 구문은 실대로 객체를 생성함 -->
+	<util:list id="exams" list-class="java.util.ArrayList">
+		<bean  class="spring.di.entity.NewlecExam" p:kor="1" p:eng="1" />
+		<ref bean="exam"/>
+	</util:list>
 </beans>
