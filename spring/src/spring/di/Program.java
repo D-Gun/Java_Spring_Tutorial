@@ -28,9 +28,9 @@ public class Program {
 		System.out.println(exam.toString());
 		console.print(); // 积己等 按眉牢 console狼 print method俊 立辟
 		
-		List<Exam> exams = (List<Exam>) context.getBean("exams");
+		//List<Exam> exams = (List<Exam>) context.getBean("exams");
 		//exams.add(new NewlecExam(1,1,1,1));
-		for(Exam e : exams)
-			System.out.println(e);
+//		for(Exam e : exams)
+//			System.out.println(e);
 	}
 }
